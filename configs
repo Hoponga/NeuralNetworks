@@ -1,0 +1,10 @@
+lambda
+5
+maxIter
+10000
+minWeight
+-2.0
+maxWeight
+2.0
+minError
+0.001

@@ -1,0 +1,9 @@
+
+To run (requires makefiles): 
+
+Open command line
+Run "make" command (makefile is included)
+Run ./output inputfile
+where inputfile denotes the name/filepath of the input file
+
+
