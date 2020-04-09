@@ -1,6 +1,6 @@
 /**
  * Implementation of reader functionalities - currently only
- * for reading in the config file
+ * for reading in the config file and exporting weights
  * 
  * @author Kailash Ranganathan
  * @version 3/21/20
@@ -116,4 +116,4 @@ void exportWeights(vector<vector<vector<double> > > weights, string fileName)
    }
    fout.close();
 
-}
+}  //exportWeights method
