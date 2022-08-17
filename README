@@ -1,3 +1,4 @@
+PART 1 - Execution Instructions
 
 To run (requires makefiles): 
 
@@ -6,5 +7,79 @@ Run "make" command (makefile is included)
 Run ./output inputfile (configs)
 where inputfile denotes the name/filepath of the input file and configs is the path
 Of the config file containing hyper parameters (configs is optional and thus in parentheses)
+
+
+PART 2 - Table of Contents
+
+1. Main driver file (main.cpp)
+Services: main() driver method, train() helper method
+
+int train(int nOut, Network &n, int numIterations, double** trainData, double** truthVals)
+   - Trains the given network using all the parameters fed into the network. 
+   - Quits when the max iterations is reached or the network error goes below the 
+     defined threshold. 
+   - Returns 1 for successful train and 0 for unsuccessful train (max iterations reached 
+     without going below error threshold)
+
+
+2. Reader class (declared in reader.hpp and defined in reader.cpp)
+Overall purpose: Reading in values and parameters from files, 
+                 forming them into data structures and 
+                 preparing them for network construction
+
+Services: 
+
+void readConfigFile(string config)
+   - Reads a properly formatted config file containing
+     hyperparameters such as lambda, max iterations, min error, and weight range. 
+   - Stores these values in the hyperparameter global variables
+
+void readMetaData(ifstream& fileIn)
+   - Reads in the metadata of the network including
+     number of training sets, layers of network, and
+     whether the input has weights or not 
+   - Stored in Reader object instance variables
+
+void readTrainingData(ifstream& fileIn)
+   - Reads in training data with the amount
+     determined by the number of input activations
+     given by network parameters and the metadata of
+     number of training sets
+
+void readWeights(ifstream& fileIn)
+   - If the user requests for their own weights to be
+     read in to the network, this method reads in the 
+     weights from the file and properly formats them into
+     the weights array. 
+
+
+3. Network class (declared in network.hpp and defined in network.cpp)
+Overall purpose: Containing the network constructs including forward
+                 propagation and backpropagation for training. The network
+                 services work for a generalized number/shape of layers
+
+Services: 
+double* run(double inputVals[])
+   - Runs forward propagation through
+     the network and returns the output layer
+     aka the network outputs for the current input
+
+void updateWeights()
+   - Increments the weights using the backpropagation
+     algorithm. The error is calculated *prior* to this step. 
+
+int error()
+   - Calculates the error after a certain output layer has been
+     found by propagating input activations through the network. 
+
+
+
+
+
+
+
+
+
+
 
 
